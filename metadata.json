@@ -1,0 +1,8 @@
+{
+  "name": "Sniper",
+  "description": "Automagically snipe your target.",
+  "author": "snowflake",
+  "entry": "index.js",
+  "version": "1.0.0",
+  "requires": [""]
+}
