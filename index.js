@@ -10,26 +10,30 @@ register("tick", (ticks) => {
   	sniper = false;
     ChatLib.chat("[Sniper]: AutoSniper: Off");
   }
-  if (sniper === true) {
-  	let playerList = getAllPlayers();
-  	new Thread(() => {
-    	if (playerList.toLowerCase().includes(snipeTarget)) {
-      	sniper = false;
-      	ChatLib.chat("[Sniper]: AutoSniper: Successfully sniped the target");
-	    } else {
-  	    Thread.sleep(1000);
-    	  if (snipeMode === "solos") {
-      		ChatLib.say("/play BEDWARS_EIGHT_ONE");
-      	} else if (snipeMode === "doubles") {
-        	ChatLib.say("/play BEDWARS_EIGHT_TWO");
-      	} else if (snipeMode === "3s") {
-        	ChatLib.say("/play BEDWARS_FOUR_THREE");
-      	} else if (snipeMode === "4s") {
-        	ChatLib.say("/play BEDWARS_FOUR_FOUR");
-      	}
-    	}
-  	});
-	}
+  try {
+  	if (sniper === true) {
+  		let playerList = getAllPlayers();
+  		new Thread(() => {
+    		if (playerList.toLowerCase().includes(snipeTarget)) {
+      		sniper = false;
+      		ChatLib.chat("[Sniper]: AutoSniper: Successfully sniped the target");
+	    	} else {
+  	  	  Thread.sleep(1000);
+    	  	if (snipeMode === "solos") {
+      			ChatLib.say("/play BEDWARS_EIGHT_ONE");
+      		} else if (snipeMode === "doubles") {
+        		ChatLib.say("/play BEDWARS_EIGHT_TWO");
+      		} else if (snipeMode === "3s") {
+        		ChatLib.say("/play BEDWARS_FOUR_THREE");
+      		} else if (snipeMode === "4s") {
+        		ChatLib.say("/play BEDWARS_FOUR_FOUR");
+      		}
+    		}
+  		});
+		}
+   } catch(e) {
+   	ChatLib.chat("[Sniper]: [Debug]: An internal error has occured on AutoSnipe module.");
+   }
 });
 ChatLib.chat("Debug: Stage 2 has been loaded");
 
