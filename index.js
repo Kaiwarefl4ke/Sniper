@@ -25,7 +25,7 @@ register("command", () => {
 }).setName("sniper help");
 
 
-register("worldLoad", () => {
+register("tick", () => {
   if (sniper === true) {
     let playerList = getAllPlayers();
     new Thread(() => {
