@@ -9,14 +9,18 @@ register("tick", (ticks) => {
   }
 });
 
-register("command", (snipeTarget) => ChatLib.chat("The Target is set to" + snipeTarget + ".")).setName("sniperSetTarget");
+register("command", (snipeTarget) => ChatLib.chat("The Target is set to" + snipeTarget + ".")).setName("sniper settarget");
 register("command", (snipeMode) => {
   if (snipeMode === "help") {
-  	ChatLib.chat("Usage: /sniperSetTarget <solos/doubles/3s/4s/help>");
+  	ChatLib.chat("Usage: /sniper setmode <solos/doubles/3s/4s/help>");
   } else {
 	  ChatLib.chat("The Mode is set to" + snipeMode +".");
   }
-}).setName("sniperSetMode");
+}).setName("sniper setmode");
+register("command", () => {
+  ChatLib.chat("/sniper settarget <playerName>");
+	ChatLib.chat("/sniper setmode <solos/doubles/3s/4s/help>");
+}).setName("sniper help");
 
 
 register("worldLoad", () => {
@@ -29,13 +33,13 @@ register("worldLoad", () => {
       } else {
         Thread.sleep(1000);
         if (snipeMode === "solos") {
-        	ChatLib.chat("/play BEDWARS_EIGHT_ONE");
+        	ChatLib.say("/play BEDWARS_EIGHT_ONE");
         } else if (snipeMode === "doubles") {
-          ChatLib.chat("/play BEDWARS_EIGHT_TWO");
+          ChatLib.say("/play BEDWARS_EIGHT_TWO");
         } else if (snipeMode === "3s") {
-          ChatLib.chat("/play BEDWARS_FOUR_THREE");
+          ChatLib.say("/play BEDWARS_FOUR_THREE");
         } else if (snipeMode === "4s") {
-          ChatLib.chat("/play BEDWARS_FOUR_FOUR");
+          ChatLib.say("/play BEDWARS_FOUR_FOUR");
         }
       }
     });
