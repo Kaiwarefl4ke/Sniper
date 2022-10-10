@@ -2,8 +2,10 @@ const autoSniper = new KeyBind("AutoSniper", Keyboard.KEY_L);
 var sniper = false;
 
 register("tick", (ticks) => {
-  if (autoSniper.isPressed()) {
+  if (autoSniper.isPressed() && sniper === false) {
     sniper = true;
+  } else {
+  	sniper = false;
   }
 });
 
