@@ -1,20 +1,21 @@
 const autoSniper = new KeyBind("AutoSniper", Keyboard.KEY_L);
 var sniper = false;
-var snipeTarget;
-var snipeMode;
+ChatLib.chat("Debug: Stage 1 has been loaded");
 
 register("tick", (ticks) => {
   if (autoSniper.isPressed() && sniper === false) {
     sniper = true;
+    ChatLib.chat("[Sniper]: AutoSniper: On");
   } else {
   	sniper = false;
+    ChatLib.chat("[Sniper]: AutoSniper: Off");
   }
   if (sniper === true) {
   	let playerList = getAllPlayers();
   	new Thread(() => {
     	if (playerList.toLowerCase().includes(snipeTarget)) {
       	sniper = false;
-      	ChatLib.chat("Debug: Successfully sniped the target");
+      	ChatLib.chat("[Sniper]: AutoSniper: Successfully sniped the target");
 	    } else {
   	    Thread.sleep(1000);
     	  if (snipeMode === "solos") {
@@ -30,6 +31,7 @@ register("tick", (ticks) => {
   	});
 	}
 });
+ChatLib.chat("Debug: Stage 2 has been loaded");
 
 register("command", (snipeTarget) => ChatLib.chat("The Target is set to" + snipeTarget + ".")).setName("sniper settarget");
 register("command", (snipeMode) => {
@@ -43,3 +45,4 @@ register("command", () => {
   ChatLib.chat("/sniper settarget <playerName>");
 	ChatLib.chat("/sniper setmode <solos/doubles/3s/4s/help>");
 }).setName("sniper help");
+ChatLib.chat("Debug: All stages have been loaded successfully, GG!");
